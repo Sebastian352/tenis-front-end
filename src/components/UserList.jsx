@@ -21,7 +21,7 @@ export default class PersonList extends React.Component {
                 {
                     this.state.persons
                         .map(person =>
-                            <li key={person.id}>{person.username + " " + person.name}</li>
+                            <li key={person.id}>{person.username + " " + person.name + " " + person.tournament + " " + person.password}</li>
                         )
                 }
             </ul>

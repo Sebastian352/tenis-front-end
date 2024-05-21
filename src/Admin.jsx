@@ -8,6 +8,7 @@ function Admin() {
     const navigateTo = useNavigate();
     const [username, setUsername] = useState("")
     const [name, setName] = useState("")
+    const [tournament, setTournament] = useState(false)
 
     const goToLogIn = () => {
         navigateTo('/login');
@@ -28,7 +29,8 @@ function Admin() {
         console.log(username)
         axios.post(putUser, {
             username: username,
-            name: name
+            name: name,
+            tournament: tournament
         }).then(res => {
             console.log(res)
         })
@@ -42,8 +44,13 @@ function Admin() {
                     <form className='flex flex-col gap-2 mt-2 w-full' onSubmit={() => { }}>
                         <input type='username' placeholder='username' value={username} onChange={(e) => setUsername(e.target.value)} className='p-3 bg-gray-200 text-md w-full placeholder:text-md ml-1 placeholder:font-semibold focus:outline-none text-semibold  rounded-md placeholder:text-purple-700'></input>
                         <input type='name' placeholder='name' value={name} onChange={(e) => setName(e.target.value)} className='p-3 bg-gray-200 text-md w-full placeholder:text-md ml-1 placeholder:font-semibold focus:outline-none text-semibold  rounded-md placeholder:text-purple-700'></input>
+                        <select className='p-2'>
+                            <option value="AcceptTournament" onChange={(e) => setTournament(true)}>Accept Tournament</option>
+                            <option value="DenyTournament" onChange={(e) => setTournament(false)}>Deny Tournament</option>
+                        </select>
                         <button type='' className='border bg-red-700 border-gray-500 mt-2' onClick={deleteUserFunc}>Delete User</button>
                         <button type='' className='border border-gray-500 mt-2' onClick={updateUserFunc}>Update User</button>
+
                     </form>
                 </div>
             </div >
